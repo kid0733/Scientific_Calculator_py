@@ -4,7 +4,7 @@ import math # noqa: F401
 import tkinter.messagebox  # noqa: F401
 
 
-#Window Settings
+#========================Window Settings======================#
 
 #Creating New Application Window
 root =Tk()  # noqa: F405
@@ -20,6 +20,36 @@ root.geometry("480x568+0+0")
 calc=Frame(root)  # noqa: F405
 calc.grid()
 
+txtDisplay= Entry(calc,font=('MS Sans Serif',20,'bold'),bg="#008080",fg="#fdffff",bd=15,width=30,justify=RIGHT)  # noqa: F405
+txtDisplay.grid(row=0,column=0,columnspan=4,pady=1)
+txtDisplay.insert(0,"0")
+
+
+
+
+
+
+#========================Menu and Functions==============================#
+#Functions
+#EXIT FUNCTIONS
+
+def iExit():
+    iExit=tkinter.messagebox.askyesno("Scientific Calculator","Confirm if you want to exit")
+    if iExit > 0:
+        root.destroy()
+        return
+
+##Filemenu Functions
+def Scientific():
+    root.resizable(width=False, height=False)
+    #setting size of the window
+    root.geometry("944x568+0+0")
+    
+def Standard():
+    root.resizable(width=False, height=False)
+    #setting size of the window
+    root.geometry("480x568+0+0")
+
 #Menu Section 1 ||| The menu parameter is used to specify the menu bar for the root window
 menubar=Menu(calc)
 
@@ -27,12 +57,12 @@ filemenu=Menu(menubar,tearoff=0)
 #setting the cascade drop down menu
 menubar.add_cascade(label="File",menu=filemenu)
 #options within the file menu
-filemenu.add_command(label="Standard")
-filemenu.add_command(label="Scientific")
+filemenu.add_command(label="Standard", command=Standard)
+filemenu.add_command(label="Scientific", command=Scientific)
 #adding a horizontal line
 filemenu.add_separator()
 #Exit  Option
-filemenu.add_command(label="Exit",command=exit)
+filemenu.add_command(label="Exit",command=iExit)
 
 #Menu Section 2
 editmenu=Menu(menubar,tearoff=0)
